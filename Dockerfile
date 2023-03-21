@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 
+LABEL org.opencontainers.image.source="https://github.com/nubelaco/historic-employee-count-tool"
 FROM python:3.8.16-bullseye
 COPY /requirements.txt /requirements.txt
 RUN pip install -U pip

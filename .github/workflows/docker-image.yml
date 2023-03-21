@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag historic-employee-count-tool:$(date +%s)
+      run: docker build . --tag ghcr.io/nubelaco/historic-employee-count-tool:latest
+        docker run ghcr.io/nubelaco/historic-employee-count-tool:latest
+        docker push ghcr.io/nubelaco/historic-employee-count-tool:latest
