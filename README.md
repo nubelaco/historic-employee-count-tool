@@ -7,14 +7,17 @@ Welcome to the Proxycurl Historic Employee Count Generator! Using the Proxycurl 
 ## Usage
 
 1. Sign up for a [Proxycurl account](https://nubela.co/proxycurl/) and purchase credits.
-2. Download the Docker container from Github.
+2. Download the Docker container from Github with the following command:
+     ```
+   docker pull ghcr.io/nubelaco/historic-employee-count-tool:master
+   ```
 3. Run the container, replacing `<PROXYCURL_API_KEY>`and `<TARGET_COMPANY_LI_URL` with their respective values (you may wish to change the output file name if running multiple scripts):
      ```
-    docker run -it nubelaco/historic-employee-count-tool <PROXYCURL_API_KEY> <TARGET_COMPANY_LI_URL> > employee_count_history.csv
+    docker run -it ghcr.io/nubelaco/historic-employee-count-tool:master PROXYCURL_API_KEY TARGET_COMPANY_LI_URL > employee_count_history.csv
     ```
 4. You can optionally specify two additional parameters: the number of months to look back and the limit on the number of employees to query. These will default to 36 & 3000, respectively. A query with these additional optional parameters included might look like this:
      ```
-    docker run -it nubelaco/historic-employee-count-tool YOUR_KEY_HERE https://www.linkedin.com/company/stripe 48 5000 > employee_count_history.csv
+    docker run -it ghcr.io/nubelaco/historic-employee-count-tool:master YOUR_KEY_HERE https://www.linkedin.com/company/stripe 48 5000 > employee_count_history.csv
     ```
 5. Alternatively you can clone this repo, use `pip install -r requirements.txt` and run from a command line or your IDE. The project was coded in Python 3.8 but it should be able to run in any higher version; eventually, you might have to move `ParamSpec` to `typing`.
 6. If you're inspired by what you've seen, build your own projects using the Proxycurl API! If you build something cool, let us know about it at hello@nubela.co & maybe we'll feature a blog post about it!
