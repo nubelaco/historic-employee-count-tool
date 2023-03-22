@@ -11,11 +11,11 @@ Welcome to the Proxycurl Historic Employee Count Generator! Using the Proxycurl 
      ```
    docker pull ghcr.io/nubelaco/historic-employee-count-tool:master
    ```
-3. Run the container, replacing `<PROXYCURL_API_KEY>`and `<TARGET_COMPANY_LI_URL` with their respective values (you may wish to change the output file name if running multiple scripts):
+3. Run the container, replacing `PROXYCURL_API_KEY`and `TARGET_COMPANY_LI_URL` with their respective values (you may wish to change the output file name if running multiple scripts):
      ```
     docker run -it ghcr.io/nubelaco/historic-employee-count-tool:master PROXYCURL_API_KEY TARGET_COMPANY_LI_URL > employee_count_history.csv
     ```
-4. You can optionally specify two additional parameters: the number of months to look back and the limit on the number of employees to query. These will default to 36 & 3000, respectively. A query with these additional optional parameters included might look like this:
+4. You can optionally specify two additional parameters: (1) the number of months to look back and (2) the limit on the number of employees to query. These will default to 36 & 3000, respectively. A query with these additional optional parameters included might look like this:
      ```
     docker run -it ghcr.io/nubelaco/historic-employee-count-tool:master YOUR_KEY_HERE https://www.linkedin.com/company/stripe 48 5000 > employee_count_history.csv
     ```
@@ -56,4 +56,4 @@ Of course, this would still be nearly impossible without the help of the Proxycu
 A: There are two hard problems in programming: Cache invalidation, naming things, and off-by-one errors. This case is an off-by-one error. The current count is for the *current* month, and we're discarding this number from the result set before we print anything. It looks a bit cleaner this way, but you're right that you do get this slightly-off result if the number has changed since the month started.
 
 **Q: How long will this take to run?**  
-A: It all depends on the size of the company that you want to scrape. We're using proxycurl-py to make our queries concurrently, but there's still a [rate limit of 300 queries per minute](https://nubela.co/proxycurl/docs#overview-rate-limit) (though bursting up to 1500 within 5 minutes is allowed). Thus, [People Data Labs](https://www.linkedin.com/company/peopledatalabs/) takes under a minute, Stripe with a limit of 3000 takes just under 6 minutes, and if you wanted to run the entireity of [Stripe](https://www.linkedin.com/company/stripe/) without any limit (set it to -1) it can be done in under an hour, but we don't recommend Apple without a limit.
+A: It all depends on the size of the company that you want to scrape. We're using [proxycurl-py](https://pypi.org/project/proxycurl-py/) to make our queries concurrently, but there's still a [rate limit of 300 queries per minute](https://nubela.co/proxycurl/docs#overview-rate-limit) (though bursting up to 1500 within 5 minutes is allowed). Thus, [People Data Labs](https://www.linkedin.com/company/peopledatalabs/) takes under a minute, [Stripe](https://www.linkedin.com/company/stripe/) with a limit of 3000 takes just under 6 minutes, and if you wanted to run the entireity of Stripe without any limit (set it to -1) it can be done in under an hour, but we don't recommend Apple without a limit.
