@@ -35,7 +35,7 @@ class EmployeeCount:
 
     # Set this flag for testing; it won't paginate past the limit, so you can test on a fast query.
     # Use in conjunction with the `page_size` parameter in `query_past_employee_urls`
-    should_run_full_query = True
+    should_run_full_query = False
 
     def __init__(self, key: str, url: str, months: Optional[int], limit: Optional[int]):
         self.key = key
